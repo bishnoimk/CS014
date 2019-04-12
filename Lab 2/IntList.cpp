@@ -93,11 +93,11 @@ ostream & operator<<(ostream &out, const IntList &rhs) {
 	if (rhs.dummyHead->next != nullptr) {
 		IntNode* currNode = rhs.dummyHead->next;
 		while (currNode != rhs.dummyTail) {
-			if(currNode == rhs.dummyTail->prev) {
-				out << currNode->data;
+			if(currNode != rhs.dummyTail->prev) {
+				out << currNode->data << " ";
 			}
 			else {
-				out << currNode->data << " ";
+				out << currNode->data;
 			}
 			currNode = currNode->next;
 		}
