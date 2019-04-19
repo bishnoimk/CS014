@@ -35,13 +35,7 @@ void selection_sort(vector<T> &vals) {
 
 template <typename T>
 T getElement(vector<T> vals, int index) {
-	T value;
-	try {
-		value = vals.at(index);
-	} catch (out_of_range& oor) {
-		cerr << "Out of range error: " << oor.what() << endl; 
-	}
-	return value;
+	return vals.at(index);
 }
 
 vector<char> createVector(){
@@ -81,6 +75,9 @@ int main() {
 	
 	cout << "STRING VECTOR: ";
 	vector<string> stringVector = {"The", "Quick", "Brown", "Fox", "Jumps", "Over", "The", "Lazy", "Dog", "."};
+	for (int i = 0; i < 10; i++) {
+		cout << stringVector.at(i) << " ";
+	}
 	cout << endl;
 	cout << "Smallest string: " << min_index(stringVector, 0) << endl;
 	cout << "Running selection sort..." << endl;
@@ -101,7 +98,14 @@ int main() {
 	while(--numOfRuns >= 0){
 		cout << "Enter a number: " << endl;
 		cin >> index;
-		curChar = getElement(vals,index);
+		
+		try {
+			curChar = getElement(vals,index);
+		} catch (out_of_range& e) {
+			cerr << "Out of range: " << e.what() << endl;
+			curChar = '0';
+		}
+		
 		cout << "Element located at " << index << ": is " << curChar << endl;
 	}
 	return 0;
