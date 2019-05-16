@@ -12,5 +12,5 @@ Node::Node(string dat) {
 	left = nullptr;
 	right = nullptr;
 	parent = nullptr;
-	balanceNumber = 0;
+	balanceFactor = 0;
 }

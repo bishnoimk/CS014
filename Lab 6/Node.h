@@ -16,7 +16,7 @@ class Node {
 		Node* left;
 		Node* right;
 		Node* parent;
-		int balanceNumber;
+		int balanceFactor;
 };
 
 #endif

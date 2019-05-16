@@ -16,12 +16,11 @@ class AVLTree {
 	private:
 		Node* root;
 		Node* findUnbalancedNode(Node*);
-		void rotate(Node*);
 		Node* rotateLeft(Node*);
 		Node* rotateRight(Node*);
 		void printBalanceFactors(Node*);
 		void visualizeTree(ofstream&, Node*);
-		void updateBalanceFactors(Node*);
+		void rebalance(Node*);
 		void setBalanceFactors(Node*);
 		int getHeight(Node*) const;
 	public:
