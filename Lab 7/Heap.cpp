@@ -28,24 +28,6 @@ void Heap::enqueue(PrintJob* job) {
 	}
 }
 
-void Heap::trickleDown(int index) {
-	if ((index * 2 + 1) < numItems) {
-		if ((index * 2 + 2) < numItems) {
-			if (arr[index * 2 + 1]->getPriority() > arr[index * 2 + 2]->getPriority()) {
-				arr[index] = arr[index * 2 + 1];
-				trickleDown(index * 2 + 1);
-			}
-			else {
-				arr[index] = arr[index * 2 + 2];
-				trickleDown(index * 2 + 2);
-			}
-		}
-		else {
-			arr[index] = arr[index * 2 + 1];
-		}
-	}
-}
-
 void Heap::dequeue() {
 	if (numItems > 2) {
 		if (arr[1]->getPriority() < arr[numItems - 1]->getPriority() && arr[2]->getPriority() < arr[numItems - 1]->getPriority()) {
@@ -78,5 +60,23 @@ void Heap::print() {
 	}
 	else {
 		cout << "The heap is empty." << endl;
+	}
+}
+
+void Heap::trickleDown(int index) {
+	if ((index * 2 + 1) < numItems) {
+		if ((index * 2 + 2) < numItems) {
+			if (arr[index * 2 + 1]->getPriority() > arr[index * 2 + 2]->getPriority()) {
+				arr[index] = arr[index * 2 + 1];
+				trickleDown(index * 2 + 1);
+			}
+			else {
+				arr[index] = arr[index * 2 + 2];
+				trickleDown(index * 2 + 2);
+			}
+		}
+		else {
+			arr[index] = arr[index * 2 + 1];
+		}
 	}
 }
