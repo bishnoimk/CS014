@@ -31,8 +31,8 @@ int HashTable::computeHash(const string &s) {
 *   appropriate array index
 */
 void HashTable::put(const string &s, int score) {
-	int index = computeHash(s);
 	if (contains(s)) {
+		int index = computeHash(s);
 		for (auto i = hashTable[index].begin(); i != hashTable[index].end(); i++) {
 			if (i->getWord() == s) {
 				i->addNewAppearance(score);
@@ -41,6 +41,7 @@ void HashTable::put(const string &s, int score) {
 		}
 	}
 	else {
+		int index = computeHash(s);
 		WordEntry* newWord = new WordEntry(s, score);
 		hashTable[index].push_back(*newWord);
 	}
