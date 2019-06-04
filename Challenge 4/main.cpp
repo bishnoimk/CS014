@@ -5,9 +5,11 @@
 
 using namespace std;
 int main() {
-	string fullText = "";
-	string input = "";
-	string file = "sInput.txt";
+	string fullText = "", input = "", file;
+	
+	cout << "Enter file name: ";
+	cin >> file;
+	cout << endl;
 	
 	ifstream fin(file);
 	if (fin.is_open()) {
@@ -21,6 +23,7 @@ int main() {
 		cout << "Unable to open file" << endl;
 		return 1;
 	}
+	
 	cout << "ORIGINAL TEXT: " << endl << fullText << endl;
 	
 	cout << endl << "FREQUENCY TABLE: " << endl;
