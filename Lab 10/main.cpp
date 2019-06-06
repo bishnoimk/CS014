@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-  ifstream ifs("input1.dms");
+  ifstream ifs("input3.dms");
   if(!ifs) {
     cerr << "Input file not found." << endl;
     exit(1);

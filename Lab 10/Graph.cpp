@@ -46,15 +46,13 @@ void Graph::output_graph(const string &filename) {
 	if (fout.is_open()) {
 		fout << "digraph G {" << endl;
 		for (unsigned int i = 0; i < vertices.size(); i++) {
-//			if (vertices.at(i).distance != INT_MAX) {
-//				fout << vertices.at(i).label << "[label= \"Label: " << vertices.at(i).label << ", Distance: " << vertices.at(i).distance << "\"];" << endl;
-//			}
-			fout << "	" << vertices.at(i).label << "[label = \"" << vertices.at(i).label << ", " << vertices.at(i).distance << "\"];" << endl;
+			if (vertices.at(i).distance != INT_MAX) {
+				fout << "	" << vertices.at(i).label << "[label= \"" << vertices.at(i).label << " " << vertices.at(i).distance << "\"];" << endl;
+			}
 			for (auto j = vertices.at(i).neighbors.begin(); j != vertices.at(i).neighbors.end(); j++) {
-//				if (vertices.at(i).distance != INT_MAX) {
-//					fout << vertices.at(i).label << " -> " << vertices.at(j->first).label << endl;
-//				}
-				fout << "	" << vertices.at(i).label << " -> " << vertices.at(j->first).label << endl;
+				if (vertices.at(i).distance != INT_MAX) {
+					fout << "	" << vertices.at(i).label << " -> " << vertices.at(j->first).label << endl;
+				}
 			}
 		}
 		fout << "}";
