@@ -22,18 +22,21 @@ Graph::Graph(ifstream &ifs) {
 	}
 	
 	while (ifs >> title) {
-		int start = 0, neighborIndex = 0;
+		int ind = 0, neighborIndex = 0;
+		
 		ifs >> neighborTitle;
 		ifs >> weight;
+		
 		for (unsigned int i = 0; i < vertices.size(); i++) {
 			if (title == vertices.at(i).label) {
-				start = i;
+				ind = i;
 			}
 			if (neighborTitle == vertices.at(i).label) {
 				neighborIndex = i;
 			}
 		}
-		vertices.at(start).neighbors.push_back(make_pair(neighborIndex, weight));
+		
+		vertices.at(ind).neighbors.push_back(make_pair(neighborIndex, weight));
 	}
 }
 
@@ -45,19 +48,21 @@ void Graph::output_graph(const string &filename) {
 	ofstream fout(filename);
 	if (fout.is_open()) {
 		fout << "digraph G {" << endl;
+		
 		for (unsigned int i = 0; i < vertices.size(); i++) {
 			if (vertices.at(i).distance != INT_MAX) {
 				fout << "	" << vertices.at(i).label << "[label= \"" << vertices.at(i).label << " " << vertices.at(i).distance << "\"];" << endl;
-			}
-			for (auto j = vertices.at(i).neighbors.begin(); j != vertices.at(i).neighbors.end(); j++) {
-				if (vertices.at(i).distance != INT_MAX) {
+				
+				for (auto j = vertices.at(i).neighbors.begin(); j != vertices.at(i).neighbors.end(); j++) {
 					fout << "	" << vertices.at(i).label << " -> " << vertices.at(j->first).label << endl;
 				}
 			}
 		}
+		
 		fout << "}";
 		fout.close();
-		string systemCommand = "dot -Tjpg input1.dot -o pic.jpg";
+		
+		string systemCommand = "dot -T jpg " + filename + " -o pic.jpg";
 		system(systemCommand.c_str());
 	}
 	else {
@@ -67,6 +72,7 @@ void Graph::output_graph(const string &filename) {
 
 void Graph::bfs() {
 	vertices.at(0).distance = 0;
+	
 	queue<Vertex*> vertexQueue;
 	vertexQueue.push(&vertices.at(0));
 	

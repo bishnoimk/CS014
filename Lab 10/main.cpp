@@ -3,7 +3,11 @@
 using namespace std;
 
 int main() {
-  ifstream ifs("input3.dms");
+  string fileName;
+  cout << "Enter a file name: ";
+  cin >> fileName;
+  
+  ifstream ifs(fileName);
   if(!ifs) {
     cerr << "Input file not found." << endl;
     exit(1);
@@ -12,7 +16,7 @@ int main() {
   Graph g(ifs);
   ifs.close();
   g.bfs();
-  string filename = "input1.dot";
+  string filename = "input.dot";
   g.output_graph(filename);
   cout << "The End." << endl;
   
